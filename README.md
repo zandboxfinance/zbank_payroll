@@ -24,7 +24,7 @@ A crypto payroll back office built on the internet computer.
 1. Start ICP local network
 
    ```bash
-   dfx start --clean --background
+   dfx start --clean --background --enable-bitcoin
    ```
 
 ## Deploy the project on ICP local network
