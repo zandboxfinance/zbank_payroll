@@ -9,19 +9,19 @@ A crypto payroll back office built on the internet computer.
 * Downloaded and installed [Node.js](https://nodejs.org/en).
 * Downloaded and installed [Angular](https://angular.io/cli).
 * Downloaded and installed the [DFINITY Canister SDK](https://internetcomputer.org/docs/current/developer-docs/setup/install#installing-the-ic-sdk-1).
-* Downloaded [Bitcoin node](https://youtu.be/H6Wu9n9Qwa8)
+* Downloaded [Bitcoin Node](https://youtu.be/H6Wu9n9Qwa8)
 * Remember to stop any Internet Computer or other network process that would create a port conflict on 4943.
 
 # Demo
 ## Environment preparation
 
-1. Bitcoin local node
+1. Start Bitcoin local node
 
    ```bash
    ./bin/bitcoind -conf=$(pwd)/bitcoin.conf -datadir=$(pwd)/data --port=18444
    ```
    
-1. Start dfinity network locally
+1. Start dfinity local network
 
    ```bash
    dfx start --clean --background
@@ -88,6 +88,7 @@ A crypto payroll back office built on the internet computer.
    ```
 
 # Todo
+* Make data persistent (preupgrade and postupgrade)
 * Deploy on ICP main network
 * Support other networks like ETH, TRON, etc.
 * Design business model to cover cycle costs
