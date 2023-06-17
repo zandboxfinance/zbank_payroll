@@ -1,0 +1,110 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="./../assets/image/logo.png" alt="logo">
+        <h1>ZBANK</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+      </li>
+      <li nz-submenu nzOpen nzTitle="User Management" nzIcon="user">
+      </li>
+      <li nz-submenu nzOpen nzTitle="Payroll Management" nzIcon="account-book">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/schedule" [queryParams]="{canisterId: frontendCanisterId}">Schedule</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/approval" [queryParams]="{canisterId: frontendCanisterId}">Approval</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Transactions" nzIcon="transaction">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/transaction" [queryParams]="{canisterId: frontendCanisterId}">Transaction View</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Configuration" nzIcon="setting">
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span>
+          <span class="header-name">HR</span>
+          <nz-divider nzType="vertical"></nz-divider>
+          <span class="header-name"> Hello, User</span>
+        </span>
+        <span class="wallet-button" (click)="showWallet()">
+          <button nz-button nzType="default" nzShape="circle" [nzLoading]="isLoadingForWallet" [disabled]="isDisableForWallet"><span nz-icon nzType="wallet"></span></button>
+        </span>
+        <span>
+          <button nz-button nzType="default" nzShape="circle"><span nz-icon nzType="logout"></span></button>
+        </span>
+      </div>
+
+    </nz-header>
+    <nz-content class="box-shadow">
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer>ZBank ©2023 Implement By ZSquard</nz-footer>
+  </nz-layout>
+</nz-layout>
+<nz-modal [(nzVisible)]="isWalletVisible" [nzFooter]="null" nzClosable nzTitle="Wallets" id="walletModal"
+  nzCancelText="Cancel" (nzOnCancel)="closeWallet()">
+  <ng-container *nzModalContent>
+    <nz-tabset>
+      <nz-tab *ngFor="let network of networks" [nzTitle]="titleTemplate" (nzClick)="refreshWallet(network)">
+        <ng-template #titleTemplate>
+          <!-- <span nz-icon nzType="apple"></span>
+          {{ network }} -->
+          <span class="network-icon">
+            <ng-container [ngSwitch]="network">
+              <ng-container *ngSwitchCase="'BTC'" >
+                  <img src="/assets/icon/bitcoin-btc-logo.svg" alt="image" />
+              </ng-container>
+              <ng-container *ngSwitchCase="'ETH'">
+                  <img src="/assets/icon/ethereum-eth-logo.svg" alt="image" />
+              </ng-container>
+              <ng-container *ngSwitchCase="'TRON'">
+                <img src="/assets/icon/tron-trx-logo.svg" alt="image" />
+            </ng-container>
+          </ng-container> 
+        </span>
+        {{ network }} 
+
+        </ng-template>
+        <!-- tab content -->
+        <div class="wallet-address-container">
+          <nz-tag nzColor="#eab07f">
+            <span nz-icon nzType="wallet"></span>
+            <span>Address</span>
+          </nz-tag>
+          <span class="wallet-address">{{ currenctWalletAddress }}</span>
+        </div>
+
+        <nz-table #walletTable [nzData]="currentWalletInfo">
+          <thead>
+            <tr>
+              <th>Currency</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let content of walletTable.data">
+              <td>{{content.currency}}</td>
+              <td>{{content.balance}}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </nz-tab>
+    </nz-tabset>
+  </ng-container>
+</nz-modal>

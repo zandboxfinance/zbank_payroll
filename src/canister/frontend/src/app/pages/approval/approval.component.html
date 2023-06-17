@@ -1,0 +1,56 @@
+<!-- Action -->
+<div class="action-container">
+    <div class="function-container">
+        <button nz-button nzType="primary" [nzLoading]="isLoadingForRefresh" (click)="getTableData()" ><span nz-icon [nzType]="'sync'"></span>Refresh</button>
+    </div>
+</div>
+
+<!-- Table -->
+<nz-table #rowSelectionTable nzShowPagination [nzData]="listOfData">
+    <thead>
+        <tr>                                                                         
+            <th *ngFor="let column of listOfColumns" [nzSortOrder]="column.sortOrder" [nzSortFn]="column.sortFn"
+                [nzSortDirections]="column.sortDirections" nzAlign="center">
+                {{ column.name }}
+            </th>
+            <th nzAlign="center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data">
+            <td nzAlign="center">{{ data.to_address }}</td>
+            <td nzAlign="center">{{ data.routine_type }}</td>
+            <td nzAlign="center" class="currency-td">
+                <ng-container [ngSwitch]="data.network">
+                    <ng-container *ngSwitchCase="'BTC'" class="currency-type">
+                        <img src="/assets/icon/bitcoin-btc-logo.svg" alt="image" />
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'ETH'" class="currency-type">
+                        <img src="/assets/icon/ethereum-eth-logo.svg" alt="image" />
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'TRON'" class="currency-type">
+                        <img src="/assets/icon/tron-trx-logo.svg" alt="image" />
+                    </ng-container>
+                </ng-container>
+                <span> {{ data.currency }}</span>
+            </td>
+            <td nzAlign="center">{{ data.amount }}</td>
+            <td nzAlign="center">{{ data.charge_fees_from }}</td>
+            <td nzAlign="center">{{ data.submittedBy }}</td>
+            <td nzAlign="center">{{ data.create_date }}</td>
+            <td nzAlign="center">
+                <span class="approval-button-container">
+                    <button nz-popconfirm nzPopconfirmTitle="Are you sure you want to approve this transaction?"
+                        nzOkText="Approve" (nzOnConfirm)="approve(data.id)" (nzOnCancel)="cancel()" nz-button
+                        nzType="primary">V</button>
+                </span>
+                <span class="reject-button-container">
+                    <!-- <button nz-button nzType="primary" nzShape="round" (click)="reject()">Reject</button> -->
+                    <button nz-popconfirm nzPopconfirmTitle="Are you sure you want to reject this transaction?"
+                        nzOkText="Reject" (nzOnConfirm)="reject(data.id)" (nzOnCancel)="cancel()" nz-button
+                        nzType="primary">X</button>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

@@ -1,0 +1,89 @@
+@import './style-common-variable';
+
+/** layout type **/
+
+
+/** color type **/
+
+.bg-main-color {
+  background-color: $main-color;
+}
+
+.bg-minor-color {
+  background-color: $minor-color;
+}
+
+.bg-fill-color {
+  background-color: $full-color;
+}
+
+.text-main-color {
+  color: $main-text-color;
+}
+
+.text-minor-color {
+  color: $minor-text-color;
+}
+
+.text-assist-color {
+  color: $assist-text-color;
+}
+
+/** align type **/
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+/** flex box type **/
+
+.flex-all-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/** text over large change type **/
+
+.text-over-change {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/** add border type **/
+
+.add-border {
+  border: 1px #d9d9d9 solid;
+  border-radius: $border-radius-size;
+}
+
+.box-shadow {
+  box-shadow: 0px 2px 2px #00000029;
+}
+
+/** Button **/
+
+.main-button {
+  color: $main-text-color;
+  border: none;
+  border: 1px solid $minor-color;
+  background-color: $minor-color;
+  font-size: $m-font-size;
+  min-width: $button-width;
+  min-height: $button-height;
+}
+
+.minor-button {
+  color: #eab07f;
+  border: 1px solid $minor-color;
+  background-color: #ffffff;
+  font-size: $m-font-size;
+  min-width: $button-width;
+  min-height: $button-height;
+}
+

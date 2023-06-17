@@ -1,0 +1,51 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>ZBank</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+      </li>
+      <li nz-submenu nzOpen nzTitle="User Management" nzIcon="user">
+      </li>
+      <li nz-submenu nzOpen nzTitle="Payroll Management" nzIcon="account-book">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/schedule">Schedule</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/approval">Approval</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Transactions" nzIcon="transaction">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/transaction" >Transaction View</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Configuration" nzIcon="setting">
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer>ZBank ©2023 Implement By ZSquard</nz-footer>
+  </nz-layout>
+</nz-layout>

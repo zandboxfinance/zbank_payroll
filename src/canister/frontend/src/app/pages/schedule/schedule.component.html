@@ -1,0 +1,181 @@
+<!-- Action -->
+<div class="action-container">
+    <div>
+        <button nz-button nzType="primary" [disabled]="setOfCheckedId.size === 0" [nzLoading]="isLoadingForDelete"
+            (click)="onDelete()">
+            <span nz-icon nzType="delete" nzTheme="outline"></span>
+            Delete
+        </button>
+        <span class="selected-title">Selected {{ setOfCheckedId.size }} items</span>
+    </div>
+    <div class="function-container">
+        <span class="add-button">
+            <button nz-button nzType="primary" (click)="openDrawer()">
+                <span nz-icon nzType="plus" nzTheme="outline"></span>
+                Add
+            </button>
+        </span>
+        <button nz-button nzType="primary" [nzLoading]="isLoadingForRefresh" (click)="getTableData()" ><span nz-icon [nzType]="'sync'"></span>Refresh</button>
+        <!--<button nz-button nzType="primary" (click)="get_scheduled_transaction()" ><span nz-icon [nzType]="'sync'"></span>Refresh</button>-->
+    </div>
+</div>
+<!-- Table -->
+<nz-table #rowSelectionTable nzShowPagination [nzData]="listOfData"
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+    <thead>
+        <tr>
+            <th nzAlign="center" [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th>
+            <th  *ngFor="let column of listOfColumns" [nzSortOrder]="column.sortOrder" [nzSortFn]="column.sortFn"
+                [nzSortDirections]="column.sortDirections" nzAlign="center">
+                {{ column.name }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data">
+            <td nzAlign="center" [nzChecked]="setOfCheckedId.has(data.id)" [nzDisabled]="data.disabled"
+                (nzCheckedChange)="onItemChecked(data.id, $event)"></td>
+            <td nzAlign="center">{{ data.to_address }}</td>
+            <td nzAlign="center">{{ data.routine_type }}</td>
+            <td nzAlign="center" class="currency-td">
+                <ng-container [ngSwitch]="data.network">
+                    <ng-container *ngSwitchCase="'BTC'" class="currency-type">
+                        <img src="/assets/icon/bitcoin-btc-logo.svg" alt="image" />
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'ETH'" class="currency-type">
+                        <img src="/assets/icon/ethereum-eth-logo.svg" alt="image" />
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'TRON'" class="currency-type">
+                        <img src="/assets/icon/tron-trx-logo.svg" alt="image" />
+                    </ng-container>
+                </ng-container>
+                <span> {{ data.currency }}</span>
+            </td>
+            <td nzAlign="center">{{ data.amount }}</td>
+            <td nzAlign="center">{{ data.charge_fees_from }}</td>
+            <td nzAlign="center">{{ data.submittedBy }}</td>
+            <td nzAlign="center">{{ data.create_date }}</td>
+        </tr>
+    </tbody>
+</nz-table>
+<!-- Drawer -->
+<nz-drawer [nzWidth]="'500px'" [nzClosable]="false" [nzVisible]="visibleDrawer" nzPlacement="right" nzTitle="Create Schedule"
+    (nzOnClose)="closeDrawer()" [nzBodyStyle]="{ overflow: 'auto' }"  [nzFooter]="footerTpl">
+    <ng-container *nzDrawerContent>
+        <div class="user-input-container">
+            <div class="form-container">
+                <div class="form-label">
+                    <span class="required">*</span>
+                    <span>Receiver Address</span>
+                </div>
+                <div class="form-control">
+                    <input nz-input [(ngModel)] = "userInput.to_address"  />
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-label">
+                    <span class="required">*</span>
+                    <span>Periodic</span>
+                </div>
+                <div class="form-control">
+                    <nz-select name="select-periodic" nzPlaceHolder="Please select period" [(ngModel)]="userInput.routine_type">
+                        <nz-option nzValue="MONTHLY" nzLabel="Monthly"></nz-option>
+                        <nz-option nzValue="BIWEEKLY" nzLabel="Biweekly"></nz-option>
+                        <nz-option nzValue="WEEKLY" nzLabel="Weekly"></nz-option>
+                        <nz-option nzValue="DAILY" nzLabel="Daily"></nz-option>
+                        <nz-option nzValue="MINUTE" nzLabel="Minute"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-label">
+                    <span class="required">*</span>
+                    <span>Network</span>
+                </div>
+                <div class="form-control">
+                    <nz-select name="select-network" nzPlaceHolder="Please select network" [(ngModel)]="userInput.network">
+                        <nz-option nzValue="BTC" nzLabel="BTC"></nz-option>
+                        <nz-option nzValue="ETH" nzLabel="ETH"></nz-option>
+                        <nz-option nzValue="TRON" nzLabel="TRON"></nz-option>
+                        <nz-option nzValue="POLYGON" nzLabel="POLYGON"></nz-option>
+                        <nz-option nzValue="SOLANA" nzLabel="SOLANA"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-label">
+                    <span class="required">*</span>
+                    <span>Currency</span>
+                </div>
+                <div class="form-control">
+                    <nz-select name="select-currency"nzPlaceHolder="Please select currency"  [(ngModel)]="userInput.currency">
+                        <nz-option nzValue="USDT" nzLabel="USDT"></nz-option>
+                        <nz-option nzValue="USDC" nzLabel="USDC"></nz-option>
+                        <nz-option nzValue="BTC" nzLabel="BTC"></nz-option>
+                        <nz-option nzValue="ETH" nzLabel="ETH"></nz-option>
+                        <nz-option nzValue="TRON" nzLabel="TRON"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-label">
+                    <span class="required">*</span>
+                    <span>Charge Fee From</span>
+                </div>
+                <div class="form-control">
+                    <nz-select name="select-charge-from" nzPlaceHolder="Please select charge from" [(ngModel)]="userInput.charge_fees_from">
+                        <nz-option nzValue="SENDER" nzLabel="Sender"></nz-option>
+                        <nz-option nzValue="RECEIVER" nzLabel="Receiver"></nz-option>
+                        <nz-option nzValue="SHARED" nzLabel="Shared"></nz-option>
+                    </nz-select>
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form-label">
+                    <span class="required">*</span>
+                    <span>Amount</span>
+                </div>
+                <div class="form-control">
+                    <nz-input-number [nzMin]="0" [nzMax]="9999999" [(ngModel)]="userInput.amount" ></nz-input-number>
+                </div>
+            </div>
+        </div>
+
+        <nz-divider nzText="Amount Detail" nzOrientation="left"></nz-divider>
+        <div class="estimate-container">
+            <div>
+                <span nz-icon nzType="thunderbolt" nzTheme="fill"></span>
+                Platform fee: {{estimateFee}}
+              </div>
+            <nz-row [nzGutter]="16">
+                <nz-col [nzSpan]="12">
+                  <nz-card>
+                    <nz-statistic
+                      [nzValue]="userInput.amount"
+                      [nzTitle]="'Sender Paid'"
+                      [nzValueStyle]="valueStyle"
+                    ></nz-statistic>
+                  </nz-card>
+                </nz-col>
+                <nz-col [nzSpan]="12">
+                  <nz-card>
+                    <nz-statistic
+                      [nzValue]="caculateFinalAmount()"
+                      [nzTitle]="'Receiver Get'"
+                      [nzValueStyle]="valueStyle"
+                    ></nz-statistic>
+                    
+                  </nz-card>
+                </nz-col>
+              </nz-row>
+        </div>
+
+    </ng-container>
+    
+</nz-drawer>
+<ng-template #footerTpl>
+    <div style="float: right">
+      <button nz-button style="margin-right: 8px;" (click)="closeDrawer()">Cancel</button>
+      <button nz-button nzType="primary" [nzLoading]="isLoadingForCreate" (click)="onCreate()">Create</button>
+    </div>
+  </ng-template>

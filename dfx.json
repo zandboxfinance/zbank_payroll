@@ -1,7 +1,7 @@
 {
   "canisters": {
     "zbank_payroll_backend": {
-      "candid": "src/zbank_payroll_backend/zbank_payroll_backend.did",
+      "candid": "src/canister/backend/endpoint.did",
       "package": "zbank_payroll_backend",
       "type": "rust"
     },
@@ -10,19 +10,42 @@
         "zbank_payroll_backend"
       ],
       "frontend": {
-        "entrypoint": "src/zbank_payroll_frontend/src/index.html"
+        "entrypoint": "src/canister/frontend/dist/frontend/index.html"
       },
       "source": [
-        "src/zbank_payroll_frontend/assets",
-        "dist/zbank_payroll_frontend/"
+        "src/canister/frontend/dist/frontend/"
       ],
       "type": "assets"
+    },
+    "zbank_bitcoin": {
+      "type": "custom",
+      "package": "zbank_bitcoin",
+      "candid": "src/canister/bitcoin/endpoint.did",
+      "wasm": "target/wasm32-unknown-unknown/release/zbank_bitcoin.wasm",
+      "build": "src/canister/bitcoin/build.sh",
+      "metadata": [
+        {
+          "name": "candid:service"
+        }
+      ]
     }
   },
   "defaults": {
+    "bitcoin": {
+      "enabled": true,
+      "nodes": [
+        "127.0.0.1:18444"
+      ],
+      "log_level": "info"
+    },
     "build": {
       "args": "",
       "packtool": ""
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:4943"
     }
   },
   "output_env_file": ".env",

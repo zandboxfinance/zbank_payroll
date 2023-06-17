@@ -1,0 +1,135 @@
+@import "../common/style-common-variable.scss";
+
+
+:host {
+  display: flex;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-layout {
+  // height: 100vh;
+}
+
+.menu-sidebar {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+}
+
+.header-trigger {
+  padding: 20px 24px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all .3s, padding 0s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.sidebar-logo {
+  position: relative;
+  height: 64px;
+  padding-left: 24px;
+  overflow: hidden;
+  line-height: 64px;
+  background: #001529;
+  transition: all .3s;
+}
+
+.sidebar-logo img {
+  display: inline-block;
+  height: 32px;
+  width: 32px;
+  vertical-align: middle;
+}
+
+.sidebar-logo h1 {
+  display: inline-block;
+  margin: 0 0 0 20px;
+  color: #89899E;
+  font-weight: 100;
+  font-size: 24px;
+  font-family: Roboto, Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+  vertical-align: middle;
+}
+
+nz-header {
+  padding: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.app-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  height: 64px;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+}
+
+nz-content {
+  margin: 24px;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  height: 100%;
+}
+
+nz-footer {
+  text-align: center;
+}
+
+.header-name {
+  padding: 0 10px 0 10px;
+}
+
+.wallet-button {
+  padding-right: 5px;
+}
+
+.spinner-container {
+  // width: 100%;
+  // height: 100%;
+}
+
+.network-icon {
+  width: 50px;
+  margin-right: 5px;
+}
+
+.network-icon>img {
+  width: 17%;
+}
+
+.wallet-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid;
+  padding: 12px;
+  border-color: #d7d3d3;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+.ant-card-meta-avatar {
+  width: 20%;
+}
+
+.wallet-address {
+
+}
+
+.wallet-address-container {
+  padding-bottom: 10px;
+}

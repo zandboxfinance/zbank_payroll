@@ -1,4 +1,5 @@
 [workspace]
 members = [
-    "src/zbank_payroll_backend",
+    "src/canister/backend",
+    "src/canister/bitcoin",
 ]

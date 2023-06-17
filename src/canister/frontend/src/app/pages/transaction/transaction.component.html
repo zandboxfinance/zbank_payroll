@@ -1,0 +1,56 @@
+<!-- Action -->
+<div class="action-container">
+    <div class="function-container">
+        <button nz-button nzType="primary" [nzLoading]="isLoadingForRefresh" (click)="getTableData()" ><span nz-icon [nzType]="'sync'"></span>Refresh</button>
+    </div>
+</div>
+
+<!-- Table -->
+<nz-table #rowSelectionTable nzShowPagination [nzData]="listOfData">
+    <thead>
+        <tr>
+            <th *ngFor="let column of listOfColumns" [nzSortOrder]="column.sortOrder" [nzSortFn]="column.sortFn"
+                [nzSortDirections]="column.sortDirections" nzAlign="center">
+                {{ column.name }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data">
+            <td nzAlign="center">{{ data.to_address }}</td>
+            <td nzAlign="center">{{ data.routine_type }}</td>
+            <td nzAlign="center" class="currency-td">
+                <ng-container [ngSwitch]="data.network">
+                    <ng-container *ngSwitchCase="'BTC'" class="currency-type">
+                        <img src="/assets/icon/bitcoin-btc-logo.svg" alt="image" />
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'ETH'" class="currency-type">
+                        <img src="/assets/icon/ethereum-eth-logo.svg" alt="image" />
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'TRON'" class="currency-type">
+                        <img src="/assets/icon/tron-trx-logo.svg" alt="image" />
+                    </ng-container>
+                </ng-container>
+                <span> {{ data.currency }}</span>
+            </td>
+            <td nzAlign="center">{{ data.amount }}</td>
+            <td nzAlign="center">{{ data.charge_fees_from }}</td>
+            <td nzAlign="center">{{ data.submittedBy }}</td>
+            <td nzAlign="center">
+                <span *ngIf="data.reviewed_status =='APPROVED'">
+                    <nz-tag nzColor="success">
+                        <span nz-icon nzType="check-circle"></span>
+                        <span>Approved</span>
+                    </nz-tag>
+                </span>
+                <span *ngIf="data.reviewed_status =='REJECTED'">
+                    <nz-tag nzColor="error">
+                        <span nz-icon nzType="close-circle"></span>
+                        <span>Rejected</span>
+                    </nz-tag>
+                </span>
+            </td>
+            <td nzAlign="center">{{ data.reviewed_date }}</td>
+        </tr>
+    </tbody>
+</nz-table>

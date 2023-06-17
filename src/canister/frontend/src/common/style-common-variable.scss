@@ -1,0 +1,107 @@
+/** color type **/
+
+$bg-highlight-color: #2e5c83;
+$main-color: #386994;
+$minor-color: #eab07f;
+$full-color: #e0e7ee;
+$main-text-color: #ffffff;
+$minor-text-color: #426d91;
+$assist-text-color: #2c2c2c;
+$table-text-color: #2c2c2c;
+$list-main-option-text-color: #ffffff;
+$list-sub-option-text-color: #84a3bd;
+$main-border-color: #ebedf0;
+$line-color: #cacaca;
+$container-bg-color: #ffffff;
+$layout-sidebar-bg: #386994;
+$layout-sidebar-color: #ffffff;
+$layout-content-bg: #e0e7ee;
+$layout-header-bg: #ffffff;
+$layout-header-color: #000000;
+$layout-query-bg: #ffffff;
+$table-td-bg: #ffffff;
+$table-th-bg: #386994;
+$btn-hover-color: #f4caa9;
+$warning-status-color: #f3ca42;
+$success-status-color: #79c43f;
+// $required-icon-color: #ffa000;
+$popout-modal-header-bg: #9fbbd4;
+$popout-modal-title-color: #386994;
+$highlight-color: #e86a6a;
+$danger-color: #ff4d4f;
+$action-button-bg-color: #386994;
+$action-button-hover-color: #6196c5;
+$action-button-color: #ffffff;
+$required-icon-color: #e86a6a;
+$progress-bar-bg: #386994;
+$progress-text-color: #2e5c83;
+$scrollbar-track-color: #cecece;
+$scrollbar-thumb-background-color: #a0a0a0;
+$progress-bar-box-shadow-bg: #00000080;
+$progress-bar-title-text-color: #faf3df;
+$admin-icon-color: #337ac9;
+$admin-edit-background-color: #d5d5d5;
+$admin-checked-background-color: #f6f6f6;
+$admin-query-background-color: #c9d8ea;
+$admin-query-hover-background-color: #0f59ac;
+
+/** layout type **/
+
+$main-layout-width: 100vw;
+$main-layout-height: 100vh;
+$portal-app-layout-width: 100vw;
+$portal-app-layout-height: 100vh;
+$sub-app-sidebar-layout-width: 246px;
+$sub-app-sidebar-layout-height: 100vh;
+$portal-layout-content-width: 80vw;
+$portal-layout-content-max-width: 80vw;
+$portal-layout-content-min-width: calc(80vw - 230px);
+$portal-layout-content-height: 100vh;
+$app-layout-content-width: 80vw;
+$app-layout-content-max-width: 80vw;
+$app-layout-content-min-width: calc(80vw - 230px);
+$app-layout-content-height: calc(100vh - 70px);
+$sub-app-header-bg: #9fbbd4;
+
+/** icon type **/
+
+// this icon size must sync "style-common-config.ts" file
+$xs-icon-size: 10px;
+$s-icon-size: 16px;
+$m-icon-size: 32px;
+$l-icon-size: 48px;
+$xl-icon-size: 64px;
+$max-icon-size: 80px;
+
+/** border type **/
+
+$border-radius-size: 4px;
+
+/** font type **/
+
+$xs-font-size: 14px;
+$s-font-size: 18px;
+$m-font-size: 24px;
+$l-font-size: 36px;
+$xl-font-size: 50px;
+$max-font-size: 60px;
+
+/** padding type **/
+
+$app-layout-content-padding: 20px;
+
+/** table column type **/
+
+$xs-col-size: 50px;
+$s-col-size: 100px;
+$m-col-size: 150px;
+$l-col-size: 180px;
+$xl-col-size: 200px;
+$max-col-size: 250px;
+$systems-layout-content-padding: 16px;
+
+$box-shadow: 0px 2px 2px #00000029;
+
+/** Button Style **/
+$button-width: 150px;
+$button-height: 46px;

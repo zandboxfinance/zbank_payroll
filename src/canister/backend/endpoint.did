@@ -1,0 +1,87 @@
+type RoutineType = variant {
+    MONTHLY;
+    BIWEEKLY;
+    WEEKLY;
+    DAILY;
+    MINUTE;
+};
+type Network = variant {
+    BTC;
+    ETH;
+    TRON;
+    POLYGON;
+    SOLANA;
+};
+type Currency = variant {
+    USDT;
+    USDC;
+    BTC;
+    ETH;
+    TRON;
+};
+type ReviewedStatus = variant {
+    APPROVED;
+    REJECTED;
+};
+type ChargeFeesFrom = variant {
+    SENDER;
+    RECEIVER;
+    SHARED;
+};
+type ExecutedTransactionEntity = record { 
+    id : text; 
+    to_address : opt text; 
+    routine_type : opt RoutineType;
+    network : opt Network;
+    currency : opt Currency;
+    amount : opt float64;
+    charge_fees_from : opt ChargeFeesFrom;
+    payment_date : opt nat64;
+    reviewed_status : opt ReviewedStatus;
+    reviewed_date : opt nat64;
+};
+type ScheduledTransactionEntity = record { 
+    id : text; 
+    to_address : opt text; 
+    routine_type : opt RoutineType;
+    network : opt Network;
+    currency : opt Currency;
+    amount : opt float64;
+    charge_fees_from : opt ChargeFeesFrom;
+    create_date : opt nat64;
+};
+type ScheduledTransactionRequest = record { 
+    to_address : text; 
+    routine_type : RoutineType;
+    network : Network;
+    currency : Currency;
+    amount : float64;
+    charge_fees_from : ChargeFeesFrom;
+};
+type PendingTransactionEntity = record { 
+    id : text; 
+    to_address : opt text; 
+    routine_type : opt RoutineType;
+    network : opt Network;
+    currency : opt Currency;
+    amount : opt float64;
+    charge_fees_from : opt ChargeFeesFrom;
+    payment_date : opt nat64;
+};
+type WalletResponse = record { 
+    network : opt Network;
+    wallet_address : opt text;
+};
+service : {
+    "greet": (text) -> (text) query;
+    get_scheduled_transaction: ()->(vec ScheduledTransactionEntity) query;
+    get_scheduled_transaction_detail : (text)->(ScheduledTransactionEntity) query;
+    add_scheduled_transaction : (ScheduledTransactionRequest)->();
+    delete_scheduled_transaction : (text)->();
+    clear_scheduled_transaction : ()->();
+    get_pending_transaction: ()->(vec PendingTransactionEntity) query;
+    get_pending_transaction_detail: (text)->(PendingTransactionEntity) query;
+    get_executed_transaction: ()->(vec ExecutedTransactionEntity) query;
+    review_pending_transaction : (text, ReviewedStatus)->();
+    get_wallet : ()->(vec WalletResponse);
+}
