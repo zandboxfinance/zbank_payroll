@@ -47,9 +47,10 @@ A crypto payroll back office built on the internet computer.
    ```bash
    dfx generate zbank_bitcoin
    dfx generate zbank_payroll_backend
-   cd zbank_payroll/src/canister/frontend
+   cd src/canister/frontend
    npm install
    ng build
+   dfx build zbank_payroll_frontend
    dfx deploy zbank_payroll_frontend
    ```
    
