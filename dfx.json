@@ -1,0 +1,30 @@
+{
+  "canisters": {
+    "zbank_payroll_backend": {
+      "candid": "src/zbank_payroll_backend/zbank_payroll_backend.did",
+      "package": "zbank_payroll_backend",
+      "type": "rust"
+    },
+    "zbank_payroll_frontend": {
+      "dependencies": [
+        "zbank_payroll_backend"
+      ],
+      "frontend": {
+        "entrypoint": "src/zbank_payroll_frontend/src/index.html"
+      },
+      "source": [
+        "src/zbank_payroll_frontend/assets",
+        "dist/zbank_payroll_frontend/"
+      ],
+      "type": "assets"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
