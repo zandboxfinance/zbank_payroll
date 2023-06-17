@@ -21,7 +21,7 @@ A crypto payroll back office built on the internet computer.
    ./bin/bitcoind -conf=$(pwd)/bitcoin.conf -datadir=$(pwd)/data --port=18444
    ```
    
-1. Start dfinity local network
+1. Start ICP local network
 
    ```bash
    dfx start --clean --background
