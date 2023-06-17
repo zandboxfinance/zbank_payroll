@@ -1,5 +1,4 @@
 # zbank_payroll
-
 A crypto payroll back office built on the internet computer. 
 
 <kbd>
@@ -88,13 +87,13 @@ A crypto payroll back office built on the internet computer.
    ./bin/bitcoin-cli -conf=$(pwd)/bitcoin.conf getnewaddress "<wallet_name>" "legacy"
    ```
 
-# Roadmap
+# Todo
+* Deploy on ICP main network
+* Support other networks like ETH, TRON, etc.
+* Design business model to cover cycle costs
+* Add network fee and platform fee features
+* Add IAM(Identity Access Management) and RBAC(role-based access control)
 
-
-
-
-
-
-
-
+# Next Roadmap
+* Unsecured Loan: With transaction data on the payroll back office, we can provide credit rating for companies, and build the next product to link them with investors.
 
