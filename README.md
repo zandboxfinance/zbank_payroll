@@ -50,6 +50,7 @@ A crypto payroll back office built on the internet computer.
    cd src/canister/frontend
    npm install
    ng build
+   dfx build zbank_payroll_frontend
    dfx deploy zbank_payroll_frontend
    ```
    
