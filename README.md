@@ -94,6 +94,21 @@ A crypto payroll back office built on the internet computer.
    ./bin/bitcoin-cli -conf=$(pwd)/bitcoin.conf getnewaddress "<wallet_name>" "legacy"
    ```
 
+# Reset environment
+
+1. Clear Bitcoin local node
+
+   ```bash
+   rm -rf data/regtest/
+   ```
+   
+1. Clear ICP local network
+
+   ```bash
+   rm -rf .dfx
+   ```
+
+
 # Trouble Shooting
 [Hint](https://internetcomputer.org/docs/current/developer-docs/integrations/bitcoin/local-development#troubleshooting), If you're trying to send a transaction and the transaction isn't being mined, try sending the same transaction via bitcoin-cli.
 
