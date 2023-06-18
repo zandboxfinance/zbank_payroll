@@ -82,11 +82,27 @@ A crypto payroll back office built on the internet computer.
    ./bin/bitcoin-cli -conf=$(pwd)/bitcoin.conf loadwallet "<wallet_name>"
    ```
 
+1. Unload wallet
+
+   ```bash
+   ./bin/bitcoin-cli -conf=$(pwd)/bitcoin.conf unloadwallet "<wallet_name>"
+   ```
+   
 1. Get new wallet address
 
    ```bash
    ./bin/bitcoin-cli -conf=$(pwd)/bitcoin.conf getnewaddress "<wallet_name>" "legacy"
    ```
+
+# Trouble Shooting
+[Hint](https://internetcomputer.org/docs/current/developer-docs/integrations/bitcoin/local-development#troubleshooting), If you're trying to send a transaction and the transaction isn't being mined, try sending the same transaction via bitcoin-cli.
+
+   ```bash
+   ./bin/bitcoin-cli -conf=$(pwd)/bitcoin.conf sendrawtransaction <tx-in-hex>
+   ```
+
+1. **bad-txns-premature-spend-of-coinbase**: Can't not spend miner reward(coinbase transactions) below 100 blocks
+
 
 # Todo
 * Make data persistent (preupgrade and postupgrade)
