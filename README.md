@@ -116,8 +116,7 @@ A crypto payroll back office built on the internet computer.
    ./bin/bitcoin-cli -conf=$(pwd)/bitcoin.conf sendrawtransaction <tx-in-hex>
    ```
 
-1. **bad-txns-premature-spend-of-coinbase**: Can't not spend miner reward(coinbase transactions) below 100 blocks
-
+1. **bad-txns-premature-spend-of-coinbase**: Coinbase is the inputless transaction created when a new block is mined and given to the miner, and must have 100 confirmations before that reward can be spent.
 
 # Todo
 * Make data persistent (preupgrade and postupgrade)
